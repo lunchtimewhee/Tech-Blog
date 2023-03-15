@@ -16,6 +16,7 @@ Blog to write down your tech thoughts and share with others.
 
 ## Installation Instructions
 Go to https://github.com/lunchtimewhee/Tech-Blog.
+https://stormy-lake-23898.herokuapp.com/
 
 ## Questions?
 - Github: https://github.com/lunchtimewhee 
