@@ -23,7 +23,7 @@ https://stormy-lake-23898.herokuapp.com/
 - Email: anthonyrli1994@gmail.com
 
 ## Usage Information
-!(./public/images/tech-blog.gif)
+![](./public/images/tech-blog.gif)
 
 1. Login
 
