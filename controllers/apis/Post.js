@@ -40,6 +40,26 @@ postsRouter.get('/:postId', async (req, res) => {
 });
 
 
+// Delete a post
+postsRouter.delete('/:postId', async (req, res) => {
+    try {
+        const post = await Post.destroy({
+            where: {
+                id: req.params.postId,
+            },
+        });
+        if (!post) {
+            res.status(404).json({ message: 'No post found with this id!' });
+            return;
+        }
+        res.status(200).json(post);
+    } catch (err) {
+        res.status(500).json(err);
+
+    }
+});
+
+
 
 
 
