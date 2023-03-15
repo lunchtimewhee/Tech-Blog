@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
+const bcrypt = require('bcrypt');
 
 class User extends Model {}
 
@@ -32,16 +33,16 @@ User.init(
     },
 
     {
-        /*hooks: {
+        hooks: {
             async beforeCreate(newUserData) {
                 try {
-                    const passwordValidator =
+                    /*const passwordValidator =
                         /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[0-9])(?=.*[a-z])[A-Za-z0-9!@#$%^&*]{12,}$|^test$/;
                     if (!passwordValidator.test(newUserData.password)) {
                         throw new Error(
                             'Password does not have the required characters.'
                         );
-                    }
+                    }*/
 
                     newUserData.password = await bcrypt.hash(
                         newUserData.password,
@@ -53,7 +54,14 @@ User.init(
                     console.log(err);
                 }
             },
-        },*/
+            async beforeUpdate(user) {
+                if (user.changed('password')) {
+                    user.password = await bcrypt.hash(user.password, 10);
+                    return user;
+                }
+                return user;
+            },
+        },
         
         sequelize,
         timestamps: false,
