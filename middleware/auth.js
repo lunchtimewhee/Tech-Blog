@@ -15,7 +15,7 @@ module.exports = async (req, res, next) => {
             },
         });
         if (!user) {
-            res.redirect('/');
+            res.redirect('/login');
             return;
         }
 

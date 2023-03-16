@@ -135,10 +135,6 @@ modalLoginBtn.addEventListener('click', loginFormHandler);
 modalSignupBtn.addEventListener('click', signupFormHandler);
 
 
-console.log(modalCloseBtns);
-console.log(modalCancelBtns);
-console.log(modalOverlays);
-
 // Selects all close, cancel, or out-of-bounds elements on both signup and login modals and allows the modals to be closed.
 [...modalCloseBtns, ...modalCancelBtns, ...modalOverlays].forEach((button) => {
     button.addEventListener('click', closeModal);

@@ -3,13 +3,12 @@
   <div class="card-content">
     <div class="media">
       <div class="media-content">
-        <p class="title is-4">{{user.username}}</p>
+        <p class="is-4">{{content}}</p>
       </div>
     </div>
 
-    <div class="content">
-      {{content}}
-      <br>
+    <div class="content is-small">
+      <strong>@{{username}}</strong> --  
       <time datetime="2016-1-1">{{format_date dateCreated }}</time>
     </div>
   </div>
