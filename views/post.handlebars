@@ -1,0 +1,36 @@
+<section class="section is-small has-background-light pt-6 section-container">
+    <article class="message is-info">
+        <div class="message-header ">
+            <p>
+                {{plainPost.title}}
+            </p>
+            <div class="header-split">
+                Posted by {{plainPost.user.username}} on {{format_date plainPost.dateCreated}}
+            </div>
+        </div>
+        <div class="message-body">
+            {{plainPost.content}}
+        </div>
+    </article>
+
+    {{#each plainPost.comments as |comment|}}
+    {{> blogPostComment}}
+    <br>
+    {{/each}}
+
+
+    <div class="field">
+        <label class="label commentInput">Comment</label>
+        <div class="control">
+            <textarea class="textarea" placeholder="Type in a comment here."></textarea>
+        </div>
+    </div>
+
+    <div class="field">
+        <div class="control submitButton">
+            <button class="button is-link">Submit</button>
+        </div>
+    </div>
+</section>
+
+<script src="../js/post.js"></script>

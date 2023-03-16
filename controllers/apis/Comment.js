@@ -6,12 +6,13 @@ const commentsRouter = new Router();
 
 // Router to create comment
 commentsRouter.post('/', async (req, res) => {
-    const { content, post_id } = req.body;
+    const { content, postId } = req.body;
 
     try {
         const newComment = await Comment.create({
             content,
-            post_id,
+            postId,
+            username,
         });
         res.status(200).json(newComment);
     } catch (error) {
