@@ -1,6 +1,6 @@
 <nav
     class='navbar is-info pt-2 pb-2'
-    style='background-color:black;'
+    style='background-color:rgb(10, 14, 68);'
     role='navigation'
     aria-label='main navigation'
 >
@@ -16,14 +16,6 @@
         <a href='/dashboard' class='navbar-item'>
                 Dashboard
         </a>
-
-        {{#if user}}
-            <a href='/user/{{user.username}}' class='navbar-item'>
-                Dashboard
-            </a>
-        {{/if}}
-
-
         
         {{#unless user.username}}
             <div class='navbar-end'>

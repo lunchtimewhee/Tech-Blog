@@ -1,18 +1,21 @@
 const { Router } = require('express');
 const { Op } = require('sequelize');
 const Post = require('./../../models/Post');
+const auth = require('../../middleware/auth');
 
 const postsRouter = new Router();
 
 // Router to create post
-postsRouter.post('/', async (req, res) => {
-    const { title, content, userId } = req.body;
+postsRouter.post('/', auth, async (req, res) => {
+    const { title, content } = req.body;
+    const user = req.user;
+    const plainUser = req.user.get({ plain: true });
 
     try {
         const newPost = await Post.create({
             title,
             content,
-            userId,
+            userId: plainUser.id,
         });
         res.status(200).json(newPost);
     } catch (error) {
@@ -23,8 +26,10 @@ postsRouter.post('/', async (req, res) => {
 
 
 // Router to get a post by ID
-postsRouter.get('/:postId', async (req, res) => {
-    
+postsRouter.get('/:postId', auth, async (req, res) => {
+    const user = req.user;
+    const plainUser = req.user.get({ plain: true });
+
     try {
         const post = await Post.findOne({
             where: {
