@@ -51,7 +51,7 @@ usersRouter.post('/register', async (req, res) => {
 
 
 // Router to get a user by ID
-usersRouter.get('/:userid', async (req, res) => {
+usersRouter.get('/user/:userid', async (req, res) => {
     
     try {
         const user = await User.findOne({
@@ -71,35 +71,32 @@ usersRouter.get('/:userid', async (req, res) => {
 // Login router
 usersRouter.post('/login', async (req, res) => {
     try {
-      const dbUserData = await User.findOne({
-        where: {
-          username: req.body.username,
-        },
-      });
-  
-      if (!dbUserData) {
-        res
-          .status(400)
-          .json({ message: 'Incorrect email or password. Please try again!' });
-        return;
-      }
       
-      const validPassword = await dbUserData.checkPassword(req.body.password);
+      const { username, password } = req.body;
+
+      const user = await User.findOne({
+          where: {
+              username: req.body.username,
+          },
+      });
   
-      if (!validPassword) {
-        res
-          .status(400)
-          .json({ message: 'Incorrect email or password. Please try again!' });
-        return;
+      console.log(user);
+  
+      if (!user) {
+          res.status(400).json({ message: 'Bad Request, User Not Found' });
+          return;
+      }
+
+      const correctPassword =  bcrypt.compareSync(password, user.password);
+
+      if (!correctPassword) {
+          res.status(401).json({ message: 'Not Authorized, Bad Password' });
+          return;
       }
   
-      req.session.save(() => {
-        req.session.loggedIn = true;
-  
-        res
-          .status(200)
-          .json({ user: dbUserData, message: 'You are now logged in!' });
-      });
+      const token = jwt.sign({ id: username }, process.env.JWT_KEY);
+      res.cookie('logintoken', token, { httpOnly: true });
+      res.status(200).json({ message: `User ${username} logged in succesfully` });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
@@ -107,7 +104,7 @@ usersRouter.post('/login', async (req, res) => {
   });
 
 // Logout router
-usersRouter.get('/logout',  async (req, res) => {
+usersRouter.get('/logout', async (req, res) => {
     console.log(req.cookies);
     res.status(200).clearCookie('logintoken').redirect('/');
 });
