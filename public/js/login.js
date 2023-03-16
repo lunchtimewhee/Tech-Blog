@@ -20,13 +20,14 @@ const email = document.getElementById('email_signup');
 const password = document.getElementById('password_signup');
 
 
-const loginFormHander = async (event) => {
+const loginFormHandler = async (event) => {
     event.preventDefault();
 
     let username = document.getElementById('username').value.trim();
     // Convert username to lowercase to match db value
     username.toLowerCase();
     const password = document.getElementById('password').value.trim();
+    console.log(password);
 
     let login_info = document.getElementById('login_info');
     // Reset form when done
@@ -65,7 +66,6 @@ const signupFormHandler = async (event) => {
     const last_name = lastName.value;
     const user_name = username.value;
     const pass_word = password.value;
-
 
     try {
         const response = await fetch('/api/user/register', {
@@ -131,7 +131,7 @@ loginButton.addEventListener('click', showLoginModal);
 signUpButton.addEventListener('click', showSignupModal);
 
 
-modalLoginBtn.addEventListener('click', loginFormHander);
+modalLoginBtn.addEventListener('click', loginFormHandler);
 modalSignupBtn.addEventListener('click', signupFormHandler);
 
 
