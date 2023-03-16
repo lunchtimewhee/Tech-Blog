@@ -31,12 +31,15 @@ https://stormy-lake-23898.herokuapp.com/
 ![](./public/images/step1.5.JPG)
 
 2. Add new posts
+
 ![](./public/images/step2.JPG)
 
 3. Comment on posts
+
 ![](./public/images/step3.JPG)
 
 4. View blog posts
+
 ![](./public/images/step4.JPG)
 
 ## License
