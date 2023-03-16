@@ -3,7 +3,11 @@ const sequelize = require('../config/connection');
 const bcrypt = require('bcrypt');
 const Post = require('./Post');
 
-class User extends Model {};
+class User extends Model {
+    checkPassword(loginPw) {
+        return bcrypt.compareSync(loginPw, this.password);
+    }
+};
 
 User.init(
     {
@@ -39,13 +43,13 @@ User.init(
                 
                 // Password validator
                 try {
-                    /*const passwordValidator =
+                    const passwordValidator =
                         /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[0-9])(?=.*[a-z])[A-Za-z0-9!@#$%^&*]{12,}$|^test$/;
                     if (!passwordValidator.test(newUserData.password)) {
                         throw new Error(
                             'Password does not have the required characters.'
                         );
-                    }*/
+                    }
                     
                     // Encrpyt password when creating user
                     newUserData.password = await bcrypt.hash(
@@ -58,16 +62,6 @@ User.init(
                     console.log(err);
                 }
             },
-
-            // Encrypt password when user is updated
-            /*
-            async beforeUpdate(user) {
-                if (user.changed('password')) {
-                    user.password = await bcrypt.hash(user.password, 10);
-                    return user;
-                }
-                return user;
-            },*/
         },
         
         sequelize,
