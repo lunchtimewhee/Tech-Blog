@@ -16,5 +16,7 @@
 </style>
 
 <section class="section is-small has-background-light pt-6 section-container">
-
+    {{#each posts as |post|}}
+    {{> blogPost}}
+    {{/each}}
 </section>

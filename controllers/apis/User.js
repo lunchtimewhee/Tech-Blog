@@ -9,7 +9,7 @@ const usersRouter = new Router();
 
 // Router to register user
 usersRouter.post('/register', async (req, res) => {
-    const { first_name, last_name, username, password } = req.body;
+    const { firstName, lastName, username, password } = req.body;
 
     const checkUser = await User.findOne({
         where: {
@@ -27,8 +27,8 @@ usersRouter.post('/register', async (req, res) => {
 
     try {
         const user = await User.create({
-            first_name,
-            last_name,
+            firstName,
+            lastName,
             username,
             password,
         });
@@ -52,7 +52,7 @@ usersRouter.get('/:userid', async (req, res) => {
             },
         });
         
-        res.status(200).json({id: user.id, first_name: user.first_name, last_name: user.last_name, password: user.password});
+        res.status(200).json({id: user.id, firstName: user.firstName, lastName: user.lastName, password: user.password});
     } catch (error) {
         console.log(error);
         res.status(500).send(error);

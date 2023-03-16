@@ -13,10 +13,10 @@ User.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        first_name: {
+        firstName: {
             type: DataTypes.STRING,
         },
-        last_name: {
+        lastName: {
             type: DataTypes.STRING,
         },
         username: {
@@ -74,7 +74,7 @@ User.init(
         timestamps: false,
         freezeTableName: true,
         useIndividualHooks: true,
-        underscored: true,
+        //underscored: true,
         modelName: 'user',
     }
 );
@@ -82,6 +82,8 @@ User.init(
 User.hasMany(Post, {
     onDelete: 'cascade',
     hooks: true,
-})
+});
+
+
 
 module.exports = User;

@@ -6,13 +6,13 @@ const postsRouter = new Router();
 
 // Router to create post
 postsRouter.post('/', async (req, res) => {
-    const { title, content, user_id } = req.body;
+    const { title, content, userId } = req.body;
 
     try {
         const newPost = await Post.create({
             title,
             content,
-            user_id,
+            userId,
         });
         res.status(200).json(newPost);
     } catch (error) {
