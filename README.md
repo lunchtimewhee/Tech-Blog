@@ -25,13 +25,18 @@ https://stormy-lake-23898.herokuapp.com/
 ## Usage Information
 ![](./public/images/tech-blog.gif)
 
-1. Login
+1. Signup/Login
+![](./public/images/step1.JPG)
+![](./public/images/step1.5.JPG)
 
 2. Add new posts
+![](./public/images/step2.JPG)
 
 3. Comment on posts
+![](./public/images/step3.JPG)
 
 4. View blog posts
+![](./public/images/step4.JPG)
 
 ## License
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
