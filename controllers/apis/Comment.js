@@ -1,18 +1,23 @@
 const { Router } = require('express');
 const { Op } = require('sequelize');
 const Comment = require('./../../models/Comment');
+const auth = require('../../middleware/auth');
 
 const commentsRouter = new Router();
 
 // Router to create comment
-commentsRouter.post('/', async (req, res) => {
+commentsRouter.post('/', auth, async (req, res) => {
     const { content, postId } = req.body;
+
+    const user = req.user;
+    const plainUser = req.user.get({ plain: true });
+
 
     try {
         const newComment = await Comment.create({
             content,
             postId,
-            username,
+            username: plainUser.username,
         });
         res.status(200).json(newComment);
     } catch (error) {

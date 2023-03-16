@@ -10,13 +10,15 @@ const commentSubmit = async () => {
     // Get the comment box text
     const content = document.querySelector('.textarea').value;
 
-
     const response = await fetch('/api/comment', {
         method: 'POST',
-        body: JSON.stringify({ content, postId, username }),
+        body: JSON.stringify({ content, postId }),
         headers: { 'Content-Type': 'application/json' }
     });
 
+    // Clear comment field
+    document.querySelector('.textarea').value = '';
+    location.reload();
 
 }
 

@@ -83,4 +83,10 @@ pathRouter.get('/post/:id', auth, async (req, res) => {
 });
 
 
+// GET all Posts for homepage
+pathRouter.get('/login', async (req, res) => {
+       res.render('login');    
+});
+
+
 module.exports = pathRouter;
