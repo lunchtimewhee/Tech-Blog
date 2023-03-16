@@ -26,6 +26,7 @@ https://stormy-lake-23898.herokuapp.com/
 ![](./public/images/tech-blog.gif)
 
 1. Signup/Login
+
 ![](./public/images/step1.JPG)
 ![](./public/images/step1.5.JPG)
 
