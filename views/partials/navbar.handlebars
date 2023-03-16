@@ -1,0 +1,179 @@
+<nav
+    class='navbar is-info pt-2 pb-2'
+    style='background-color:black;'
+    role='navigation'
+    aria-label='main navigation'
+>
+    <div class='navbar-brand'>
+        <a class='navbar-item' href='/'>
+            <h1 class='py-2 px-2'><b>Tech Blog</b></h1>
+        </a>
+
+        <a class='navbar-burger'>
+            <span aria-hidden='true'></span>
+            <span aria-hidden='true'></span>
+            <span aria-hidden='true'></span>
+        </a>
+    </div>
+
+    <div class='navbar-menu'>
+        <div class='navbar-start'>
+
+        <a href='/dashboard' class='navbar-item'>
+                Dashboard
+        </a>
+
+        {{#if user}}
+            <a href='/user/{{user.username}}' class='navbar-item'>
+                Dashboard
+            </a>
+        {{/if}}
+
+
+        
+        {{#unless user.username}}
+            <div class='navbar-end'>
+                <div class='navbar-item'>
+                    <div class='buttons'>
+                        <a class='button is-info' id='nav_sign-up'>
+                            <strong>Sign up</strong>
+                        </a>
+                        <a class='button is-light' id='nav_login'>
+                            Log in
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {{else}}
+            <div class='navbar-end'>
+                <div class='navbar-item'>
+                    <div class='buttons'>
+                        <a class='button is-light' id='logout'>
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <script src='../js/logout.js'></script>
+        {{/unless}}
+    </div>
+</nav>
+
+<div class='modal' id='login-modal'>
+    <div class='modal-background'></div>
+    <div class='modal-card'>
+        <header class='modal-card-head'>
+            <p class='modal-card-title'>Login</p>
+            <button class='delete' aria-label='close'></button>
+        </header>
+        <section class='modal-card-body'>
+            <form id='login_form'>
+
+                <div class='field'>
+                    <label class='label'>Username</label>
+                    <div class='control'>
+                        <input
+                            class='input'
+                            id='username'
+                            type='text'
+                            placeholder='Username'
+                        />
+                    </div>
+                </div>
+
+                <div class='field'>
+                    <label class='label'>Password</label>
+                    <div class='control'>
+                        <input
+                            class='input'
+                            id='password'
+                            type='password'
+                            placeholder='Password'
+                        />
+                    </div>
+                </div>
+            </form>
+        </section>
+        <footer class='modal-card-foot'>
+            <button class='button is-info' id='submit-login'>Login</button>
+            <button class='button cancel'>Cancel</button>
+        </footer>
+    </div>
+</div>
+
+<div class='modal' id='signup-modal'>
+    <div class='modal-background'></div>
+    <div class='modal-card'>
+        <header class='modal-card-head'>
+            <p class='modal-card-title'>Sign-Up</p>
+            <button class='delete' aria-label='close'></button>
+        </header>
+        <section class='modal-card-body'>
+            <form
+                id='signup_form'
+                action='/register'
+                method='post'
+            >
+
+                <div class='field'>
+                    <label class='label'>First Name</label>
+                    <div class='control'>
+                        <input
+                            class='input'
+                            name='first_name'
+                            id='first_name_signup'
+                            type='text'
+                            placeholder='John'
+                        />
+                    </div>
+                </div>
+
+                <div class='field'>
+                    <label class='label'>Last Name</label>
+                    <div class='control'>
+                        <input
+                            class='input'
+                            name='last_name'
+                            id='last_name_signup'
+                            type='text'
+                            placeholder='Smith'
+                        />
+                    </div>
+                </div>
+
+                <div class='field'>
+                    <label class='label'>Username</label>
+                    <div class='control'>
+                        <input
+                            class='input'
+                            name='username'
+                            id='username_signup'
+                            type='text'
+                            placeholder='Username'
+                        />
+                    </div>
+                </div>
+
+                <div class='field'>
+                    <label class='label'>Password</label>
+                    <div class='control'>
+                        <input
+                            class='input'
+                            name='password'
+                            id='password_signup'
+                            type='password'
+                            placeholder='Super Secret Password'
+                        />
+                    </div>
+                </div>
+
+            </form>
+        </section>
+        <footer class='modal-card-foot'>
+            <button class='button is-info' id='submit-signup'>Create Account</button>
+            <button class='button cancel'>Cancel</button>
+        </footer>
+    </div>
+</div>
+
+<script src='../js/login.js'></script>
