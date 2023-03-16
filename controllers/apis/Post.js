@@ -64,6 +64,31 @@ postsRouter.delete('/:postId', async (req, res) => {
     }
 });
 
+// Router to get a post by ID
+postsRouter.put('/:postId', auth, async (req, res) => {
+    const { title, content } = req.body;
+    const user = req.user;
+    const plainUser = req.user.get({ plain: true });
+
+    const editedData = {
+        title,
+        content
+    }
+
+    try {
+        const post = await Post.update(editedData,{
+            where: {
+                id: req.params.postId,
+            },
+        });
+        
+        res.status(200).json(post);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send(error);
+    }   
+});
+
 
 
 
