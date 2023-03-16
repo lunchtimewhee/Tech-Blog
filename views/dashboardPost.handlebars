@@ -1,0 +1,26 @@
+<section class="section is-small has-background-light pt-6 section-container">
+    <div class="field">
+        <label class="label commentInput">Edit Blog Post</label>
+        
+        <div class="control">
+            <input class="input" id="newTitle" type="text" value="{{plainPost.title}}" >
+            <br>
+            <textarea class="textarea" id="newContent" >{{plainPost.content}}</textarea>
+        </div>
+    </div>
+    <div class="is-hidden" id="updateSaved">
+        Updates saved!
+    </div>
+
+    <br>
+    <br>
+
+    <div class="field">
+        <div class="control">
+            <button class="button is-link" id="submitButton">Submit</button>
+            <button class="button is-danger is-pulled-right" id="deleteButton">Delete</button>
+        </div>
+    </div>
+</section>
+
+<script src='../js/postDashboard.js'></script>

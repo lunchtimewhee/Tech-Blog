@@ -82,6 +82,28 @@ pathRouter.get('/post/:id', auth, async (req, res) => {
     }
 });
 
+pathRouter.get('/dashboard/:id', auth, async (req, res) => {
+    const user = req.user;
+    const plainUser = req.user.get({ plain: true });
+    
+    try {
+      const post = await Post.findByPk(req.params.id, {
+        include: [User, Comment]
+      });
+      
+      const plainPost = post.get({ plain: true });
+      console.log(plainPost);
+      
+      res.render('dashboardPost', {
+        plainPost,
+        user: plainUser,
+      });
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+});
+
 pathRouter.get('/dashboard', auth, async (req, res) => {
     const user = req.user;
     const plainUser = req.user.get({ plain: true });
